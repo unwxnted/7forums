@@ -47,7 +47,10 @@
                         <p class="card-text">
                             <%= post.content %>
                         </p>
-                        <a href="#" class="btn btn-primary">read more</a>
+                        <form action="/post/view" method="GET">
+                            <input type="hidden" name="postId" value="<%= post.id %>">
+                            <button class="btn btn-primary" type="submit">Read</button>
+                        </form>
                     </div>
                 </div>
                 <% }); %>

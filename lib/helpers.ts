@@ -14,14 +14,7 @@ export const isLoggedIn = async (req, res, next) =>{
     if(req.isAuthenticated()){
         return next();
     } else{
-        res.redirect('/api/users/login');
+        res.redirect('/');
     }
 
-}
-
-export const isNotLoggedIn = (req, res, next) =>{
-    if(!req.isAuthenticated()){
-        return next();
-    }
-    res.redirect('/');
 }

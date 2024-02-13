@@ -9,9 +9,7 @@ interface User {
     id: number;
     username: string;
     password: string;
-    // otras propiedades si las hay
 }
-
 
 passport.use('local.signin', new localStrategy({
     usernameField: 'username',

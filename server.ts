@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 
 app.use("/", IndexRouter);
 app.use("/api/users", UsersRouter);
-app.use("/", PostRouter);
+app.use("/post", PostRouter);
 
 app.listen(3000, () => {
     console.log(`server on port ${PORT}`);
