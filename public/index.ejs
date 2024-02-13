@@ -1,0 +1,63 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="card">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <h2 class="navbar-brand" href="#">7forums</h2>
+            <h6 class="text-info" href="#">
+                <%= user %>
+            </h6>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse text" id="navbarNav">
+
+                <ul class="navbar-nav ml-auto text-center">
+                    <li class="nav-item">
+                        <form id="post" action="/post/create" method="get">
+                            <button type="submit" class="btn">Post</button>
+                        </form>
+                    </li>
+
+                    <li class="nav-item">
+                        <form id="logout" action="/api/users/logout" method="post">
+                            <button type="submit" class="btn">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container mt-4">
+
+        <% if (posts.length> 0) { %>
+            <% posts.forEach(post=> { %>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= post.title %>
+                        </h5>
+                        <p class="card-text">
+                            <%= post.content %>
+                        </p>
+                        <a href="#" class="btn btn-primary">read more</a>
+                    </div>
+                </div>
+                <% }); %>
+                    <% } else { %>
+                        <p>No posts</p>
+                        <% } %>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>

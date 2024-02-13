@@ -1,0 +1,49 @@
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <h2 class="navbar-brand" href="#">7forums</h2>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse text" id="navbarNav">
+      <ul class="navbar-nav ml-auto text-center">
+        <li class="nav-item">
+          <a class="nav-link" href="/signin">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">Sign Up</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container justify-content-center align-items-center mt-5">
+    <div class="col-md-6 offset-md-3">
+      <h2 class="mb-4">Sign Up</h2>
+
+      <form action="/api/users/signup" method="post">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+
+        <button type="submit" class="btn btn-success">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
