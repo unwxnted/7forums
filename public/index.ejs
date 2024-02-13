@@ -45,7 +45,7 @@
                             <%= post.title %>
                         </h5>
                         <p class="card-text">
-                            <%= post.content %>
+                            <%= post.content.slice(0, 150) + '...' %>
                         </p>
                         <form action="/post/view" method="GET">
                             <input type="hidden" name="postId" value="<%= post.id %>">
@@ -57,7 +57,6 @@
                     <% } else { %>
                         <p>No posts</p>
                         <% } %>
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
