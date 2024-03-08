@@ -63,6 +63,26 @@ class PostController {
         } catch {
             res.sendStatus(500);
         }
+        res.sendStatus(204);
+    }
+
+    public async like(req: Request, res: Response){
+        const postId = req.body.postId;
+        const userId = req.user['id'];
+        try{
+            const isLiked = await pool.query('SELECT * FROM likes WHERE user_id = ?', [userId]);
+            if(isLiked && isLiked.length > 0) return res.sendStatus(204);
+            await pool.query('UPDATE posts SET likes=likes+1 WHERE id= ?', [postId]);
+            await pool.query('INSERT INTO likes SET ?', [{
+                user_id: userId,
+                post_id: postId
+            }]);
+        }catch{
+            res.sendStatus(500);
+        }
+
+        res.sendStatus(204);
+        
     }
 }
 

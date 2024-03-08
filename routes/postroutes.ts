@@ -8,5 +8,6 @@ PostRouter.get("/create", isLoggedIn, PostController.index);
 PostRouter.post("/create", isLoggedIn, PostController.create);
 PostRouter.get("/view", isLoggedIn, PostController.view);
 PostRouter.post("/comment", isLoggedIn, PostController.comment);
+PostRouter.post("/like", isLoggedIn, PostController.like);
 
 export default PostRouter;

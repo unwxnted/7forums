@@ -47,10 +47,25 @@
                         <p class="card-text">
                             <%= post.content.slice(0, 150) + '...' %>
                         </p>
-                        <form action="/post/view" method="GET">
-                            <input type="hidden" name="postId" value="<%= post.id %>">
-                            <button class="btn btn-primary" type="submit">Read</button>
-                        </form>
+
+                        <div class="row">
+                            <div class="col">
+                                <form action="/post/view" method="GET">
+                                    <input type="hidden" name="postId" value="<%= post.id %>">
+                                    <button class="btn btn-primary" type="submit">Read</button>
+                                </form>
+                            </div>
+
+
+                            <div class="col-1 d-flex justify-content-between">
+                                <form action="/post/like" method="POST">
+                                    <input type="hidden" name="postId" value="<%= post.id %>">
+                                    <button class="btn btn-success" type="submit">Like</button>
+                                    ❤️: <%= post.likes %>
+                                </form>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <% }); %>
