@@ -51,29 +51,32 @@
                         Comments
                     </h2>
                     <div class="card-text justify-content-center">
-                        <section>
+                        <section id="comments">
 
                             <div class="card mb-3 justify-content-center">
                                 <form action="/post/comment" method="POST">
                                     <input type="hidden" name="postId" value="<%= post.id %>">
-                                    <textarea name="content" class="form-control form-control-lg rounded border shadow" rows="4"></textarea>
-                                    <button class="mt-3 ml-1" > Comment</button>
+                                    <textarea name="content" class="form-control form-control-lg rounded border shadow"
+                                        rows="4"></textarea>
+                                    <button class="mt-3 ml-1" id="button"> Comment</button>
                                 </form>
 
                             </div>
 
-                            <% if (post.comments.length> 0) { %>
-                                <% post.comments.forEach(comment=> { %>
-                                    <div class="card p-2">
-                                        <%= comment.username %> : <%= comment.content %> 
-                                    </div>
-                                    
-                                    <br>
+                            <div id="commentsSection">
+                                <% if (post.comments.length> 0) { %>
+                                    <% post.comments.forEach(comment=> { %>
+                                        <div class="card p-2 m-2">
+                                            <%= comment.username %> : <%= comment.content %>
+                                        </div>
 
-                                <% }); %>
-                                <% } else { %>
-                                    <p>No comments</p>
-                                    <% } %>
+                                        <br>
+
+                                        <% }); %>
+                                            <% } else { %>
+                                                <p>No comments</p>
+                                                <% } %>
+                            </div>
                         </section>
 
                     </div>
@@ -81,6 +84,44 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+        function loadComments(postId) {
+            fetch(`/post/getAllComments`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id: postId
+                }),
+            })
+                .then(response => response.json())
+                .then(commentsData => {
+                    const commentsContainer = document.getElementById("commentsSection");
+                    commentsContainer.innerHTML = ""; 
+
+                    commentsData.forEach(comment => {
+                        const commentDiv = document.createElement("div");
+                        commentDiv.classList.add("card", "p-2", "m-2");
+                        commentDiv.textContent = `${comment.username}: ${comment.content}`;
+                        commentsContainer.appendChild(commentDiv);
+                    });
+                })
+                .catch(error => console.error('Error al cargar comentarios:', error));
+        }
+        const postId = "<%= post.id %>";
+
+        loadComments(postId);
+
+        setInterval(() => loadComments(postId), 10000);
+        document.getElementById('button').addEventListener('click', function () {
+            loadComments(postId);
+        });
+
+
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

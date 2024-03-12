@@ -84,6 +84,25 @@ class PostController {
         res.sendStatus(204);
         
     }
+
+    public async getAllComments(req: Request, res: Response) {
+        const { id } = req.body;
+        if (!id) return res.sendStatus(400);
+        try {
+            const comments = await pool.query(`
+                SELECT comments.*, users.username 
+                FROM comments 
+                JOIN users ON comments.user_id = users.id 
+                WHERE comments.post_id = ?`, 
+                id
+            );
+            return res.json(comments);
+        } catch (e) {
+            console.log(e);
+            return res.sendStatus(500);
+        }
+    }
+    
 }
 
 export default new PostController;
