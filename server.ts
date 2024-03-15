@@ -11,6 +11,7 @@ import './lib/passport'
 import IndexRouter from "./routes/indexRoutes";
 import UsersRouter from "./routes/usersRoutes";
 import PostRouter from "./routes/postroutes";
+import ProfileRouter from "./routes/profileRoutes";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -47,6 +48,7 @@ app.use((req, res, next) => {
 app.use("/", IndexRouter);
 app.use("/api/users", UsersRouter);
 app.use("/post", PostRouter);
+app.use("/profile", ProfileRouter);
 
 app.listen(3000, () => {
     console.log(`server on port ${PORT}`);

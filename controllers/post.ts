@@ -14,7 +14,8 @@ class PostController {
         const newPost = {
             title: title,
             content: content,
-            user_id: userID
+            user_id: userID,
+            likes: 0
         }
         try {
             const query = await pool.query('INSERT INTO posts SET ?', [newPost]);
@@ -34,6 +35,7 @@ class PostController {
 
             query = await pool.query('SELECT * FROM users WHERE id = ?', [post.user_id]);
             post.author = query[0]['username'];
+            post.authorId = query[0]['id'];
 
 
             query = await pool.query('SELECT comments.id, comments.content, comments.user_id, comments.post_id, users.username FROM comments JOIN users ON comments.user_id = users.id WHERE comments.post_id = ? ORDER BY comments.id;', [postId]);
@@ -70,7 +72,7 @@ class PostController {
         const postId = req.body.postId;
         const userId = req.user['id'];
         try{
-            const isLiked = await pool.query('SELECT * FROM likes WHERE user_id = ?', [userId]);
+            const isLiked = await pool.query('SELECT * FROM likes WHERE user_id = ? AND post_id = ?', [userId, postId]);
             if(isLiked && isLiked.length > 0) return res.sendStatus(204);
             await pool.query('UPDATE posts SET likes=likes+1 WHERE id= ?', [postId]);
             await pool.query('INSERT INTO likes SET ?', [{

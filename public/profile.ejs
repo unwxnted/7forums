@@ -1,0 +1,76 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <h2 class="navbar-brand" href="#">7forums</h2>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text" id="navbarNav">
+            <ul class="navbar-nav ml-auto text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Back</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="d-flex justify-content-center align-items-center mt-5">
+        <div class="card container">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="mb-5 mt-3">
+                    Name: <%= user.username %>
+                </h2>
+                <p class="font-weight-bold">
+
+                    Total Posts: <%= posts.length %>
+
+                </p>
+
+                <p class="font-weight-bold">
+                    <% let totalLikes = 0; %>
+                    <% posts.forEach(post => { %>
+                        <% totalLikes += post.likes; %>
+                    <% }); %>
+                    Total Likes: <%= totalLikes %>
+                </p>
+                <h4 class="mt-5">Posts:</h4>
+                <% if (posts.length> 0) { %>
+                    <% posts.forEach(post=> { %>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= post.title %>
+                                </h5>
+                                <p class="card-text">
+                                    <%= post.content.slice(0, 150) + '...' %>
+                                </p>
+    
+                                <div class="d-flex justify-content-between">
+                                    <form action="/post/like" method="POST">
+                                        <input type="hidden" name="postId" value="<%= post.id %>">
+                                        <button class="btn btn-success" type="submit">Like</button>
+                                        ❤️: <%= post.likes %>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <p>No posts</p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>

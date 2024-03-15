@@ -30,8 +30,7 @@
                             <%= post.title %>
                         </h2>
                         <div class="card-text">
-                            <h6>Author: <%= post.author %>
-                            </h6>
+                            <h6>Author: <a href="/profile/<%= post.authorId %>">  <%= post.author %>  </a> </h6>
                         </div>
                         <div class="card-text">
                             <%= post.content %>
