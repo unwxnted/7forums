@@ -13,11 +13,11 @@ class IndexController {
         if (!req.isAuthenticated()) {
             return res.redirect("/signin");
         }
-        let username = await pool.query('select * from users where id = ?', req.user['id']);
-        username = username[0]['username'];
+        let user = await pool.query('select * from users where id = ?', req.user['id']);
+        user = user[0];
         const posts = await pool.query('SELECT * FROM posts');
         
-        return res.render("index", { posts: posts, user: username});
+        return res.render("index", { posts: posts, user: user});
     }
 
     public async signup(req: Request, res: Response) {
