@@ -10,9 +10,6 @@ declare module 'express-session' {
 
 class IndexController {
     public async index(req: Request, res: Response) {
-        if (!req.isAuthenticated()) {
-            return res.redirect("/signin");
-        }
         let user = await pool.query('select * from users where id = ?', req.user['id']);
         user = user[0];
         const posts = await pool.query('SELECT * FROM posts');
