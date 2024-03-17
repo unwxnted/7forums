@@ -50,6 +50,20 @@ app.use("/api/users", UsersRouter);
 app.use("/post", PostRouter);
 app.use("/profile", ProfileRouter);
 
-app.listen(3000, () => {
+const server = app.listen(3000, () => {
     console.log(`server on port ${PORT}`);
 })
+
+export const closeServer = async () => {
+    return new Promise<void>((resolve, reject) => {
+      server.close((err?: Error) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
+};
+
+export default app;

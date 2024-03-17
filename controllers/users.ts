@@ -5,17 +5,13 @@ import passport from "passport";
 class UserController {
     public signUp = passport.authenticate('local.signup', {
         successRedirect: '/',
-        failureRedirect: '/signup',
-        failureFlash: true,
-        successFlash: true
+        failureRedirect: '/signup'
     });
         
     public signIn = async (req: Request, res: Response, next: any) => {
         passport.authenticate('local.signin', {
             successRedirect: '/',
-            failureRedirect: '/signin',
-            failureFlash: true,
-            successFlash: true
+            failureRedirect: '/signin'
         })(req, res, next);
     }
 
