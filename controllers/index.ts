@@ -20,6 +20,16 @@ class IndexController {
         return res.render("index", { posts: posts, user: user});
     }
 
+    public async filter(req: Request, res: Response){
+        const {category} = req.params;
+
+        let user = await pool.query('select * from users where id = ?', req.user['id']);
+        user = user[0];
+        const posts = await pool.query('SELECT * FROM posts WHERE category = ?', category);
+        
+        return res.render("index", { posts: posts, user: user});
+    }
+
     public async signup(req: Request, res: Response) {
         res.render("signUp");
     }

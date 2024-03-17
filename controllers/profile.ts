@@ -8,9 +8,10 @@ class ProfileController {
         if (!id) return res.sendStatus(400);
         try {
             const user = await pool.query('SELECT * FROM users WHERE id = ?', id);
-            const posts = await pool.query('SELECT posts.id, posts.title, posts.content, posts.likes, posts.dislikes FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = ?', id);
+            const posts = await pool.query('SELECT posts.id, posts.title, posts.content, posts.likes FROM posts INNER JOIN users ON posts.user_id = users.id WHERE users.id = ?', id);
             return res.render('profile', {user: user[0], posts: posts});
-        } catch{
+        } catch (e){
+            console.log(e);
             return res.sendStatus(500);
         }
     }

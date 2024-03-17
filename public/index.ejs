@@ -21,17 +21,71 @@
                 <ul class="navbar-nav ml-auto text-center">
                     <li class="nav-item">
                         <form id="post" action="/post/create" method="get">
-                            <button type="submit" class="btn">Post</button>
+                            <button type="submit" class="btn btn-success mr-2">Post</button>
                         </form>
                     </li>
 
                     <li class="nav-item">
                         <form id="logout" action="/api/users/logout" method="post">
-                            <button type="submit" class="btn">Logout</button>
+                            <button type="submit" class="btn btn-danger">Logout</button>
                         </form>
                     </li>
                 </ul>
             </div>
+        </nav>
+    </div>
+
+    <div class="card">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoryNav"
+                aria-controls="categoryNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse text" id="categoryNav">
+
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item mr-2">
+                        <form action="/filter/General" method="get" class="m-0 p-0">
+                            <button class="btn btn-light" type="submit">General</button>
+                        </form>
+                    </li>
+
+                    <li class="nav-item mr-2">
+                        <form action="/filter/Tech" method="get" class="m-0 p-0">
+                            <button class="btn btn-light" type="submit">Tech</button>
+                        </form>
+                    </li>
+                    
+                    <li class="nav-item mr-2">
+                        <form action="/filter/VideoGames" method="get" class="m-0 p-0">
+                            <button class="btn btn-light" type="submit">VideoGames</button>
+                        </form>
+                    </li>
+
+                    <li class="nav-item mr-2">
+                        <form action="/filter/Entertainment" method="get" class="m-0 p-0">
+                            <button class="btn btn-light" type="submit">Entertainment</button>
+                        </form>
+                    </li>
+
+                    <li class="nav-item mr-2">
+                        <form action="/filter/News" method="get" class="m-0 p-0">
+                            <button class="btn btn-light" type="submit">News</button>
+                        </form>
+                    </li>
+
+                    <li class="nav-item mr-2">
+                        <form action="/filter/off-topic" method="get" class="m-0 p-0">
+                            <button class="btn btn-light" type="submit">Off-topic</button>
+                        </form>
+                    </li>
+
+                </ul>
+
+            </div>
+
         </nav>
     </div>
 

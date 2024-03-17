@@ -27,14 +27,26 @@
 
             <form action="/post/create" method="post">
                 <div class="form-group">
-                    <label for="title">title:</label>
+                    <label for="title">Title:</label>
                     <input type="text" class="form-control" id="title" name="title" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="content">content:</label>
+                    <label for="content">Content:</label>
                     <textarea name="content" class="form-control form-control-lg rounded border shadow" rows="4"></textarea>
                 </div>
+
+                <label for="category">
+                    Category:
+                </label>
+                <select class="form-control mb-3" id="category" name="category">
+                    <option value="General">General</option>
+                    <option value="Tech">Tech</option>
+                    <option value="VideoGames">Video Games</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="News">News</option>
+                    <option value="off-topic">Off-Topic</option>
+                </select>
 
                 <button type="submit" class="btn btn-success">Create</button>
             </form>

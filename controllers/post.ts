@@ -8,14 +8,14 @@ class PostController {
 
     public async create(req: Request, res: Response) {
         const userID = req.user['id'];
-        const title = req.body.title;
-        const content = req.body.content;
+        const {title, content, category} = req.body;
 
         const newPost = {
             title: title,
             content: content,
             user_id: userID,
-            likes: 0
+            likes: 0,
+            category : category
         }
         try {
             const query = await pool.query('INSERT INTO posts SET ?', [newPost]);

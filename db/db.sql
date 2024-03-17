@@ -11,7 +11,7 @@ CREATE TABLE posts(
     title VARCHAR(100) NOT NULL,
     content TEXT,
     likes INT,
-    dislikes INT,
+    category VARCHAR(255),
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)    
 );
@@ -34,4 +34,4 @@ CREATE TABLE likes(
 );
 
 INSERT INTO users(username, password) VALUES('wknss', 'root123');
-INSERT INTO posts(title, content, likes, dislikes, user_id) VALUES('Welcome to 7forums', 'Hi everyone, im wknss the main dev of this forum, and I want to say welcome and thanks for viewing this website!', 0, 0, 1);
+INSERT INTO posts(title, content, likes, category, user_id) VALUES('Welcome to 7forums', 'Hi everyone, im wknss the main dev of this forum, and I want to say welcome and thanks for viewing this website!', 0, 'General', 1);
