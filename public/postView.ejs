@@ -114,7 +114,7 @@
 
         loadComments(postId);
 
-        setInterval(() => loadComments(postId), 10000);
+        setInterval(() => loadComments(postId), 1000);
         document.getElementById('button').addEventListener('click', function () {
             loadComments(postId);
         });
